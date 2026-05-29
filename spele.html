@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kliker spēle</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-image:url("hell.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:Arial, sans-serif;
+}
+
+.game-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+
+#score{
+    font-size:60px;
+    color:white;
+}
+
+#btn{
+    width:500px;
+    margin-top:100px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+#btn:active{
+    transform:scale(0.95);
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    margin-top:10px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+
+    background:white;
+    transition:0.2s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    background:#ddd;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="game-container">
+    <h1 id="score">0</h1>
+    <img id="btn" src="sad_hamster.png">
+
+    <div class="buttons">
+        <button id="upgrade-hamster">
+            Upgrade hamster
+        </button>
+
+        <button id="upgrade-background">
+            Upgrade background
+        </button>
+
+        <button id="upgrade-kliker">
+            Upgrade kliker
+        </button>
+    </div>
+</div>
+
+<script>
+
+const btn = document.getElementById("btn")
+const score = document.getElementById("score")
+const hamsterBtn = document.getElementById("upgrade-hamster")
+const backgroundBtn = document.getElementById("upgrade-background")
+const klikerBtn = document.getElementById("upgrade-kliker")
+
+let amount = 0
+let clickUpdate = 1
+let hamsterUpdate = 1
+let backgroundUpdate = 1
+let klikerCost = 2
+let hamsterCost = 200
+let backgroundCost = 400
+
+
+hamsterBtn.innerHTML = "Upgrade hamster: " + hamsterCost
+backgroundBtn.innerHTML = "Upgrade background: " + backgroundCost
+klikerBtn.innerHTML = "Upgrade kliker: " + klikerCost
+
+btn.addEventListener("click", () => {
+    amount += clickUpdate
+    score.innerHTML = amount
+
+})
+
+
+klikerBtn.addEventListener("click", () => {
+    if (amount >= klikerCost) {
+        amount -= klikerCost
+        klikerCost *= 2
+        clickUpdate *= 2
+        score.innerHTML = amount
+        klikerBtn.innerHTML = "Upgrade kliker: " + klikerCost
+    }
+
+    else {
+        alert("NEPIETIEK")
+    }
+})
+
+
+hamsterBtn.addEventListener("click", () => {
+    if (amount >= hamsterCost) {
+        amount -= hamsterCost
+        hamsterCost *= 2
+        hamsterUpdate += 1
+
+        if (hamsterUpdate === 2) {
+            btn.src = "hamster_update_1.png"
+        }
+        if (hamsterUpdate === 3) {
+            btn.src = "hamster_update_2.png"
+        }
+        if (hamsterUpdate === 4) {
+            btn.src = "hamster_update_3.png"
+        }
+        if (hamsterUpdate === 5) {
+            btn.src = "hamster_update_4.png"
+        }
+
+        score.innerHTML = amount
+        hamsterBtn.innerHTML = "Upgrade hamster: " + hamsterCost
+    }
+    
+    else {
+        alert("NEPIETIEK")
+    }
+})
+
+
+backgroundBtn.addEventListener("click", () => {
+    if (amount >= backgroundCost) {
+        amount -= backgroundCost
+        backgroundCost *= 2
+        backgroundUpdate += 1
+
+        if (backgroundUpdate === 2) {
+            document.body.style.backgroundImage = 'url("background2.png")'
+        }
+        if (backgroundUpdate === 3) {
+            document.body.style.backgroundImage = 'url("background3.png")'
+        }
+        if (backgroundUpdate === 4) {
+            document.body.style.backgroundImage = 'url("background4.png")'
+        }
+
+
+        score.innerHTML = amount
+        backgroundBtn.innerHTML = "Upgrade background: " + backgroundCost
+    }
+    else {
+        alert("NEPIETIEK")
+}
+})
+
+</script>
+</body>
+</html>
