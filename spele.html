@@ -71,6 +71,8 @@ button:hover{
     background:#ddd;
 }
 
+
+
 </style>
 </head>
 
@@ -160,9 +162,8 @@ hamsterBtn.addEventListener("click", () => {
             hamsterBtn.innerHTML = "MAX upgrade"
             hamsterBtn.disabled = true
         } else {
-            hamsterBtn.innerHTML = "Upgrade hamster: " + hamsterCost
-        }
-    } else {
+            hamsterBtn.innerHTML = "Upgrade hamster: " + hamsterCost}} 
+            else {
         alert("NEPIETIEK")
     }
 })
@@ -194,11 +195,11 @@ backgroundBtn.addEventListener("click", () => {
 
         if (backgroundUpdate >= maxBackgroundUpdate) {
             backgroundBtn.innerHTML = "MAX upgrade"
-            backgroundBtn.disabled = true
-        } else {
+            backgroundBtn.disabled = true}
+            else {
             backgroundBtn.innerHTML = "Upgrade background: " + backgroundCost
-        }
-    } else {
+            }} 
+            else {
         alert("NEPIETIEK")
     }
 })
